@@ -10,15 +10,8 @@ import Particles from "react-tsparticles";
 import { useCallback } from "react";
 import { loadFull } from "tsparticles";
 import { Analytics } from '@vercel/analytics/react';
-import ReactGA from 'react-ga'
 
 import options from "./particles.json"
-
-ReactGA.initialize('G-LTVL3K4VMF')
-if (typeof window !== 'undefined') {
-  ReactGA.pageview(window.location.pathname + window.location.search);
-}
-
 
 
 const Home = () => {
@@ -26,6 +19,16 @@ const Home = () => {
   const [apiOutput, setApiOutput] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+
+  //google analytics
+  function injectGA(){
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'G-49W6ZYT9TJ');    }
+  }
 
   //Maximum number of clicks allowed
   var maxClicks = 5;
@@ -125,6 +128,12 @@ const Home = () => {
       <Head>
         <title>Dream Interpreter</title>
       </Head>
+      {/* Global site tag (gtag.js) - Google Analytics */}
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-49W6ZYT9TJ"
+      />
+    <script>{injectGA()}</script>
       <div className="container">
         <div className="header">
           <div className="header-title">
