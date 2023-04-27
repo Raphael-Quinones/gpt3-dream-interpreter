@@ -10,8 +10,14 @@ import Particles from "react-tsparticles";
 import { useCallback } from "react";
 import { loadFull } from "tsparticles";
 import { Analytics } from '@vercel/analytics/react';
+import ReactGA from 'react-ga'
 
 import options from "./particles.json"
+
+ReactGA.initialize('G-LTVL3K4VMF')
+if (typeof window !== 'undefined') {
+  ReactGA.pageview(window.location.pathname + window.location.search);
+}
 
 
 
